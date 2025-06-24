@@ -1,16 +1,17 @@
 package clasesPrincipales;
 
-public class Asistente {
+public class Invitadx {
     private String dni;
     private String nombre;
     private String email;
 
-    public Asistente(String dni, String nombre, String email) {
+    public Invitadx(String dni, String nombre, String email) {
         this.dni = dni;
         this.nombre = nombre;
         this.email = email;
     }
 
+    // getters y setters necesarios
     public String getDni() {
         return dni;
     }

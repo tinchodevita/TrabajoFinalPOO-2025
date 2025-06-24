@@ -13,7 +13,7 @@ public class Evento {
     private LocalTime hora;
     private String ubicacion;
     private int capacidadMaxima;
-    private List<Asistente> asistentes;
+    private List<Invitadx> invitadxs;
 
     public Evento(int id, String nombre, String descripcion, LocalDate fecha, LocalTime hora, String ubicacion, int capacidadMaxima) {
         this.id = id;
@@ -23,29 +23,32 @@ public class Evento {
         this.hora = hora;
         this.ubicacion = ubicacion;
         this.capacidadMaxima = capacidadMaxima;
-        this.asistentes = new ArrayList<>();
+        this.invitadxs = new ArrayList<>();
     }
 
-    public void agregarAsistente(Asistente a) {
+    // agregar invitadx
+    public void agregarInvitadx(Invitadx i) {
         if (!estaLleno()) {
-            asistentes.add(a);
+            invitadxs.add(i);
         }
     }
-
-    public void eliminarAsistente(Asistente a) {
-        asistentes.remove(a);
+    
+    // eliminar invitadx
+    public void eliminarInvitadx(Invitadx i) {
+        invitadxs.remove(i);
     }
-
+    
+    // capacidad llena?
     public boolean estaLleno() {
-        return asistentes.size() >= capacidadMaxima;
+        return invitadxs.size() >= capacidadMaxima;
+    }
+    
+    // cantidad invitadxs
+    public int getCantidadInvitadxs() {
+        return invitadxs.size();
     }
 
-    public int getCantidadAsistentes() {
-        return asistentes.size();
-    }
-
-    // Getters y Setters
-
+    // getters y etters necesarios
     public int getId() {
         return id;
     }
@@ -74,8 +77,8 @@ public class Evento {
         return capacidadMaxima;
     }
 
-    public List<Asistente> getAsistentes() {
-        return asistentes;
+    public List<Invitadx> getInvitadxs() {
+        return invitadxs;
     }
 
     public void setNombre(String nombre) {
