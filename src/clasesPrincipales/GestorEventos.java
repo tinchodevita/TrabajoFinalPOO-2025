@@ -13,8 +13,8 @@ public class GestorEventos {
     }
 
     // crear evento
-    public void crearEvento(String nombre, String descripcion, LocalDate fecha, String hora, String ubicacion, int capacidadMaxima) {
-        Evento nuevo = new Evento(proximoId++, nombre, descripcion, fecha, java.time.LocalTime.parse(hora), ubicacion, capacidadMaxima);
+    public void crearEvento(String nombre, String descripcion, LocalDate fecha, String hora, String ubicacion, int capacidadMaxima, String recurso) {
+        Evento nuevo = new Evento(proximoId++, nombre, descripcion, fecha, java.time.LocalTime.parse(hora), ubicacion, capacidadMaxima, recurso);
         eventos.add(nuevo);
     }
 
@@ -69,5 +69,13 @@ public class GestorEventos {
     // traer todos los eventos
     public List<Evento> getTodosLosEventos() {
         return eventos;
+    }
+
+    public int getProximoId() {
+        return this.proximoId;
+    }
+
+    public void setProximoId(int id) {
+        this.proximoId = id;
     }
 }

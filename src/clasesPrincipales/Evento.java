@@ -14,8 +14,9 @@ public class Evento {
     private String ubicacion;
     private int capacidadMaxima;
     private List<Invitadx> invitadxs;
+    private String recursoAsignado;
 
-    public Evento(int id, String nombre, String descripcion, LocalDate fecha, LocalTime hora, String ubicacion, int capacidadMaxima) {
+    public Evento(int id, String nombre, String descripcion, LocalDate fecha, LocalTime hora, String ubicacion, int capacidadMaxima, String recursoAsignado) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -24,6 +25,7 @@ public class Evento {
         this.ubicacion = ubicacion;
         this.capacidadMaxima = capacidadMaxima;
         this.invitadxs = new ArrayList<>();
+        this.recursoAsignado = recursoAsignado;
     }
 
     // agregar invitadx
@@ -32,17 +34,17 @@ public class Evento {
             invitadxs.add(i);
         }
     }
-    
+
     // eliminar invitadx
     public void eliminarInvitadx(Invitadx i) {
         invitadxs.remove(i);
     }
-    
+
     // capacidad llena?
     public boolean estaLleno() {
         return invitadxs.size() >= capacidadMaxima;
     }
-    
+
     // cantidad invitadxs
     public int getCantidadInvitadxs() {
         return invitadxs.size();
@@ -103,6 +105,14 @@ public class Evento {
 
     public void setCapacidadMaxima(int capacidadMaxima) {
         this.capacidadMaxima = capacidadMaxima;
+    }
+
+    public String getRecursoAsignado() {
+        return recursoAsignado;
+    }
+
+    public void setRecursoAsignado(String recursoAsignado) {
+        this.recursoAsignado = recursoAsignado;
     }
 
     @Override

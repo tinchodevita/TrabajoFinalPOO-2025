@@ -10,8 +10,10 @@ import java.util.List;
 public class PantallaPrincipal extends JFrame {
 
     private GestorEventos gestor;
-    private DefaultListModel<Evento> modeloEventos;
-    private JList<Evento> listaEventos;
+    private DefaultListModel<Evento> modeloFuturos;
+    private DefaultListModel<Evento> modeloPasados;
+    private JList<Evento> listaFuturos;
+    private JList<Evento> listaPasados;
 
     public PantallaPrincipal(GestorEventos gestor) {
         this.gestor = gestor;
@@ -33,31 +35,88 @@ public class PantallaPrincipal extends JFrame {
         panel.add(titulo, BorderLayout.NORTH);
 
         // lista de eventos
-        modeloEventos = new DefaultListModel<>();
-        listaEventos = new JList<>(modeloEventos);
-        JScrollPane scroll = new JScrollPane(listaEventos);
-        panel.add(scroll, BorderLayout.CENTER);
+        modeloFuturos = new DefaultListModel<>();
+        modeloPasados = new DefaultListModel<>();
+        listaFuturos = new JList<>(modeloFuturos);
+        listaPasados = new JList<>(modeloPasados);
+
+        JScrollPane scrollFuturos = new JScrollPane(listaFuturos);
+        JScrollPane scrollPasados = new JScrollPane(listaPasados);
+        JTabbedPane pestañas = new JTabbedPane();
+
+        pestañas.addTab("Futuros", scrollFuturos);
+        pestañas.addTab("Pasados", scrollPasados);
+
+        panel.add(pestañas, BorderLayout.CENTER);
 
         // botones
         JButton botonVerDetalles = new JButton("Ver detalles");
         JButton botonNuevoEvento = new JButton("Nuevo evento");
+        JButton botonEliminarEvento = new JButton("Eliminar evento");
+        JButton botonEditarEvento = new JButton("Editar evento");
 
+        // accion ver detalles evento
         botonVerDetalles.addActionListener(e -> {
-            Evento eventoSeleccionado = listaEventos.getSelectedValue();
-            if (eventoSeleccionado != null) {
-                new VistaEvento(gestor, eventoSeleccionado);
+            Evento seleccionado = listaFuturos.getSelectedValue();
+            if (seleccionado == null) {
+                seleccionado = listaPasados.getSelectedValue();
+            }
+
+            if (seleccionado != null) {
+                new VistaEvento(gestor, seleccionado);
             } else {
-                JOptionPane.showMessageDialog(this, "Por favor, seleccioná un evento.");
+                JOptionPane.showMessageDialog(this, "Seleccioná un evento para ver los detalles.");
             }
         });
 
+        // accion nuevo evento
         botonNuevoEvento.addActionListener(e -> {
             new FormularioEvento(gestor, this);
         });
 
+        // accion eliminar evento
+        botonEliminarEvento.addActionListener(e -> {
+            Evento seleccionado = listaFuturos.getSelectedValue();
+            if (seleccionado == null) {
+                seleccionado = listaPasados.getSelectedValue();
+            }
+
+            if (seleccionado != null) {
+                int confirmacion = JOptionPane.showConfirmDialog(
+                        this,
+                        "¿Estás seguro de eliminar este evento?",
+                        "Confirmar eliminación",
+                        JOptionPane.YES_NO_OPTION);
+
+                if (confirmacion == JOptionPane.YES_OPTION) {
+                    gestor.eliminarEvento(seleccionado.getId());
+                    cargarEventos(); // refresca la lista
+                    JOptionPane.showMessageDialog(this, "🗑 Evento eliminado correctamente.");
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Seleccioná un evento primero.");
+            }
+        });
+
+        // accion editar evento
+        botonEditarEvento.addActionListener(e -> {
+            Evento seleccionado = listaFuturos.getSelectedValue();
+            if (seleccionado == null) {
+                seleccionado = listaPasados.getSelectedValue();
+            }
+
+            if (seleccionado != null) {
+                new FormularioEvento(gestor, this, seleccionado);
+            } else {
+                JOptionPane.showMessageDialog(this, "Seleccioná un evento primero.");
+            }
+        });
+
         JPanel panelBotones = new JPanel();
         panelBotones.add(botonVerDetalles);
-        panelBotones.add(botonNuevoEvento); // se implementa después
+        panelBotones.add(botonNuevoEvento);
+        panelBotones.add(botonEliminarEvento);
+        panelBotones.add(botonEditarEvento);
         panel.add(panelBotones, BorderLayout.SOUTH);
 
         add(panel);
@@ -66,11 +125,17 @@ public class PantallaPrincipal extends JFrame {
     }
 
     // carga de eventos
-    void cargarEventos() {
-        modeloEventos.clear();
-        List<Evento> eventos = gestor.getTodosLosEventos();
-        for (Evento evento : eventos) {
-            modeloEventos.addElement(evento);
+    public void cargarEventos() {
+        modeloFuturos.clear();
+        modeloPasados.clear();
+
+        for (Evento e : gestor.getTodosLosEventos()) {
+            if (e.getFecha().isAfter(java.time.LocalDate.now())) {
+                modeloFuturos.addElement(e);
+            } else {
+                modeloPasados.addElement(e);
+            }
         }
     }
+
 }

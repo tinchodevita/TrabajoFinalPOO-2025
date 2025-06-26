@@ -55,7 +55,6 @@ public class FormularioInvitadx extends JFrame {
             } else {
                 Invitadx nuevx = new Invitadx(dni, nombre, email);
                 evento.agregarInvitadx(nuevx);
-                vistaEvento.actualizarLista(); // refresca la vista anterior
                 JOptionPane.showMessageDialog(this, "✅ Invitadx registradx correctamente.");
                 dispose();
             }
