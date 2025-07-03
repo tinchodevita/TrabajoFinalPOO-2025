@@ -12,7 +12,7 @@ public class FormularioInvitadx extends JFrame {
 
         // caracteristicas generales
         setTitle("Registrar invitadx");
-        setSize(400, 300);
+        setSize(500, 400);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 

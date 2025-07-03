@@ -13,7 +13,7 @@ public class GestorArchivos {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(ruta))) {
             for (Evento e : eventos) {
                 writer.write("EVENTO;" + e.getId() + ";" + e.getNombre() + ";" + e.getDescripcion() + ";" +
-                e.getFecha() + ";" + e.getHora() + ";" + e.getUbicacion() + ";" + e.getCapacidadMaxima());
+                e.getFecha() + ";" + e.getHora() + ";" + e.getUbicacion() + ";" + e.getCapacidadMaxima() + ";" + e.getRecursoAsignado());
                 writer.newLine(); //se guardan los datos del evento separados por ";"
                 
                 // se recorren los invitados de ese evento y se agregan al final

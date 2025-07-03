@@ -5,7 +5,6 @@ import clasesPrincipales.GestorEventos;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.List;
 
 public class PantallaPrincipal extends JFrame {
 
@@ -20,7 +19,7 @@ public class PantallaPrincipal extends JFrame {
 
         // caracteristicas generales
         setTitle("Gestión de Eventos");
-        setSize(500, 400);
+        setSize(650, 550);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -54,6 +53,7 @@ public class PantallaPrincipal extends JFrame {
         JButton botonNuevoEvento = new JButton("Nuevo evento");
         JButton botonEliminarEvento = new JButton("Eliminar evento");
         JButton botonEditarEvento = new JButton("Editar evento");
+        JButton botonEstadisticas = new JButton("Ver estadísticas");
 
         // accion ver detalles evento
         botonVerDetalles.addActionListener(e -> {
@@ -112,11 +112,44 @@ public class PantallaPrincipal extends JFrame {
             }
         });
 
+        // accion cargar estadisticas
+        botonEstadisticas.addActionListener(e -> {
+            int total = gestor.getTodosLosEventos().size();
+            int futuros = gestor.listarEventosFuturos().size();
+            int pasados = gestor.listarEventosPasados().size();
+
+            int totalInvitadxs = 0;
+            for (Evento evento : gestor.getTodosLosEventos()) {
+                totalInvitadxs += evento.getCantidadInvitadxs();
+            }
+
+            double promedio = total > 0 ? (double) totalInvitadxs / total : 0;
+
+            String mensaje = "📊 Estadísticas del sistema:\n\n" +
+                    "Eventos totales: " + total + "\n" +
+                    "Eventos futuros: " + futuros + "\n" +
+                    "Eventos pasados: " + pasados + "\n" +
+                    "Promedio de invitadxs por evento: " + String.format("%.2f", promedio);
+
+            JTextArea areaTexto = new JTextArea(mensaje);
+            areaTexto.setEditable(false);
+            areaTexto.setLineWrap(true);
+            areaTexto.setWrapStyleWord(true);
+            areaTexto.setFont(new Font("Arial", Font.PLAIN, 14));
+
+            JScrollPane scroll = new JScrollPane(areaTexto);
+            scroll.setPreferredSize(new Dimension(350, 200)); // ajustá el tamaño a gusto
+
+            JOptionPane.showMessageDialog(this, scroll, "📊 Estadísticas del sistema", JOptionPane.INFORMATION_MESSAGE);
+
+        });
+
         JPanel panelBotones = new JPanel();
         panelBotones.add(botonVerDetalles);
         panelBotones.add(botonNuevoEvento);
         panelBotones.add(botonEliminarEvento);
         panelBotones.add(botonEditarEvento);
+        panelBotones.add(botonEstadisticas);
         panel.add(panelBotones, BorderLayout.SOUTH);
 
         add(panel);

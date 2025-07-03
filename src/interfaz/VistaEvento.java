@@ -19,7 +19,7 @@ public class VistaEvento extends JFrame {
 
         // caracteristicas generales
         setTitle("Detalle del Evento");
-        setSize(400, 350);
+        setSize(500, 450);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 

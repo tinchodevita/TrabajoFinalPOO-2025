@@ -1,18 +1,18 @@
-EVENTO;1;Conferencia Java;Introducción a la POO;2024-09-20;10:00;Aula Magna;100
+EVENTO;1;Conferencia Java;Introducción a la POO;2024-09-20;10:00;Aula Magna;100;Proyector, Notebook
 INVITADX;12345678;María Gómez;maria@mail.com
 INVITADX;87654321;Lucas Pérez;lucas@mail.com
-EVENTO;2;Hackatón 2025;Competencia de programación;2025-08-10;09:00;Salón de eventos;120
+EVENTO;2;Hackatón 2025;Competencia de programación;2025-08-10;09:00;Salón de eventos;120;WiFi, Energía, Catering
 INVITADX;11223344;Carlos Ruiz;carlos@mail.com
 INVITADX;22334455;Sofía Martínez;sofia@mail.com
 INVITADX;33445566;Tomás Fernández;tomas@mail.com
-EVENTO;3;Charla Diseño UX;Tendencias 2025;2025-12-01;17:00;Aula 5;80
+EVENTO;3;Charla Diseño UX;Tendencias 2025;2025-12-01;17:00;Aula 5;80;Proyector
 INVITADX;44556677;Agustina Ledesma;agus@mail.com
-EVENTO;4;Taller de Robótica;Construcción de bots;2024-05-05;14:00;Taller 1;60
+EVENTO;4;Taller de Robótica;Construcción de bots;2024-05-05;14:00;Taller 1;60;Piezas, Notebook, Soldador
 INVITADX;55667788;Bruno Díaz;bruno@mail.com
 INVITADX;66778899;Valentina Ríos;valen@mail.com
-EVENTO;5;Feria de Ciencias;Muestras escolares;2025-09-22;13:00;Gimnasio;200
+EVENTO;5;Feria de Ciencias;Muestras escolares;2025-09-22;13:00;Gimnasio;200;Pantallas, Sonido
 INVITADX;77889900;Federico Salas;fede@mail.com
 INVITADX;88990011;Camila Torres;camila@mail.com
 INVITADX;99001122;Martín Blanco;martin@mail.com
-EVENTO;6;Encuentro Literario;Lectura de obras clásicas;2024-03-10;18:00;Biblioteca Central;50
+EVENTO;6;Encuentro Literario;Lectura de obras clásicas;2024-03-10;18:00;Biblioteca Central;50;Micrófono, Luces
 INVITADX;10111213;Lucía Vera;lucia@mail.com

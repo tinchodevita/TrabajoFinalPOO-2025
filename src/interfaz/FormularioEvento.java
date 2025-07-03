@@ -13,7 +13,7 @@ public class FormularioEvento extends JFrame {
     public FormularioEvento(GestorEventos gestor, PantallaPrincipal pantalla, Evento eventoExistente) {
         // operador ternario para verificar si existe un evento
         setTitle(eventoExistente == null ? "Agregar nuevo evento" : "Editar evento");
-        setSize(500, 400);
+        setSize(600, 500);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
